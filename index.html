@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Raui</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #fce7f3, #e0f2fe, #ecfeff);
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --accent: #f472b6;
+      --text-main: #334155;
+      --text-soft: #64748b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      padding: 32px 28px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 160px;
+      height: 160px;
+      background: #fde68a;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .container::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 200px;
+      height: 200px;
+      background: #bfdbfe;
+      border-radius: 50%;
+      opacity: 0.4;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--text-main);
+    }
+
+    .header p {
+      margin-top: 8px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 999px;
+      margin: 18px auto;
+    }
+
+    .letter {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-main);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      white-space: pre-line; /* Important: keeps line breaks */
+      position: relative;
+      z-index: 1;
+    }
+
+    .signature {
+      margin-top: 32px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+
+    .signature span {
+      display: block;
+      margin-top: 6px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Floating Christmas elements */
+    .snowflake {
+      position: absolute;
+      color: white;
+      font-size: 14px;
+      opacity: 0.6;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .header h1 {
+        font-size: 1.9rem;
+      }
+
+      .letter {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 24px 20px 32px;
+      }
+    }
+      /* Opening animation */
+    .opening {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .opening.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .opening-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      padding: 40px 36px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      animation: float 3s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    .opening-card h2 {
+      font-family: 'Playfair Display', serif;
+      margin: 12px 0;
+      color: var(--text-main);
+    }
+
+    .opening-card .small {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .opening-card span {
+      font-size: 2rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Scrollable letter */
+    .letter {
+      max-height: 55vh;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .letter::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .letter::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .letter::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Opening Screen -->
+  <div class="opening" id="opening">
+    <div class="opening-card">
+      <p class="small">you have received a letter ✨</p>
+      <h2>Tap to Open</h2>
+      <span>🎄</span>
+    </div>
+  </div>
+
+  <div class="container" id="letterContainer">
+    <div class="header">
+      <h1>🎄 Merry Christmas</h1>
+      <div class="divider"></div>
+      <p>a little letter just for you</p>
+    </div>
+
+    <!-- 
+      =============================
+      PUT YOUR MESSAGE HERE ONLY
+      Edit the text below 👇
+      =============================
+    -->
+    <div class="letter">
+Dear Flamey,
+
+Merry Christmas, Favorite!! Yes, I will definitely call you Favorite, kay mao gyud na akong tawag sa imoha from the very start. While writing this, I honestly can’t help but feel emotional. I never expected us to be this close. You were kind of distant before, and we really weren’t that close—not until we allowed ourselves to be vulnerable with one another. And from that moment, everything shifted. We slowly learned how to open up, how to trust, and how to be honest, and that made all the difference. From then on, I genuinely wanted to be with you—not just around you, but with you—as a friend who will always support you, care for you, and stay by your side no matter what.
+
+This is our first Christmas together, and I am genuinely happy like, truly happy—that I got to celebrate it with you and with our friends. It’s something I’ll always remember. I really hope that you’re enjoying this day right now, because Christmas is all about happiness, love, giving, and receiving blessings. I hope na pag pasko ninyo diha, dili ka nila awayon, and instead they treat you gently and with respect. Awayon nako sila if awayon ka nila! Chariz ay HAHAHAHA.
+
+I never lie when I say that I feel safe whenever I’m with you. Just your presence alone brings me calm and comfort. You may not see it, but you are incredibly caring—sobra gyud ka caring as a friend. You’re genuine in a way that feels effortless, and that’s what makes you so special. Ikaw ang klase sa friend nga dili lang lingaw kauban, but someone you grow with. Ikaw ang friend nga naay matun-an sa friendship ninyo, someone who teaches you patience, understanding, and sincerity.
+
+You’re the kind of friend who stays—not just during the fun moments, but especially during the hard ones. Through ups and downs, highs and lows, you don’t disappear. And that alone makes you stand out. Matalino ka, madiskarte ka, and very humble ka nga tao. You don’t let your strengths overpower your kindness, and that balance is something I truly admire. I will always pray to God that He blesses our friendship and guides it in the right direction. I pray that we continue to grow—not apart, but with understanding and respect for each other. May we, and especially you, conquer all the problems and challenges that come your way. You are so strong, Flamey—stronger than you give yourself credit for.
+
+You shaped yourself into someone independent, resilient, and good. Pinalaki mo ang sarili mo into someone amazing. You became strong on your own, and now you’re even stronger than before. I am genuinely proud of you. I know your mom is proud of you too, even if she doesn’t always show it. She taught you how to stand up for yourself, how to be brave, and how to survive—and one day, those lessons will take you exactly where you’re meant to be. Thank you for being you. Thank you for trusting me, for letting me see the real you, and for making this friendship feel safe, honest, and real. I’m grateful for you, for your presence, and for the space you hold in my life.
+
+Merry Christmas, my favorite girl.
+I love youuuu so much!! ❤️
+
+
+    </div>
+
+    <div class="signature">
+      With love this Christmas,
+      <span>Nabi</span>
+    </div>
+  </div>
+
+  <!-- Snowflakes -->
+  <script>
+    const snowflakeCount = 25;
+
+    for (let i = 0; i < snowflakeCount; i++) {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.innerHTML = '❄';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = 5 + Math.random() * 5 + 's';
+      snowflake.style.fontSize = 10 + Math.random() * 14 + 'px';
+      snowflake.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(snowflake);
+    }
+      
+    const opening = document.getElementById('opening');
+    const letterContainer = document.getElementById('letterContainer');
+
+    letterContainer.style.display = 'none';
+
+    opening.addEventListener('click', () => {
+      opening.classList.add('hide');
+      setTimeout(() => {
+        opening.style.display = 'none';
+        letterContainer.style.display = 'block';
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>
+
